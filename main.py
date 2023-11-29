@@ -26,24 +26,31 @@ def main():
     img = create_img_from_array(img_array)  # tworzy obrazek na podstawie powyższej macierzy
     img.save('img.png')  # zapisuje obrazek
     top_layer_array = create_top_random_layer_array(len(img_array),
-                                                    len(img_array[0]))  # tworzy losową macierz składającą się z 2 i 3
-    print(f'Top Layer:\n {top_layer_array}')  # wypisuje losową macierz
+                                                    len(img_array[
+                                                            0]))  # tworzy losową macierz składającą się z 2 i 3 o wymiarach takich jak macierz obrazka(20 na 20)
+    print(f'Top layer array:\n {top_layer_array}')  # wypisuje losową macierz
     top_layer_img = create_img_from_array(top_layer_array)  # tworzy pierwszy obraz z losowej macierzy
     top_layer_img.save('top.png')  # zapisuje obeazek losowej macierzy
     bottom_layer_array = create_bottom_layer_array(img_array,
                                                    top_layer_array)  # tworzy drugą macierz na podstawie macierzy obrazka i macierzy losowej
-    print(f'Bottom Layer:\n {bottom_layer_array}')  # wypisuje powyższą macierz
+    print(f'Bottom layer array:\n {bottom_layer_array}')  # wypisuje powyższą macierz
     bottom_layer_img = create_img_from_array(bottom_layer_array)  # tworzy obraz z powyższej macierzy
     bottom_layer_img.save('bottom.png')  # zapisuje powyższy obraz
 
 
-def create_top_random_layer_array(size_x, size_y):  # zwraca losową macierz zawierającą tylko wartości 2 i 3
+def create_top_random_layer_array(size_x, size_y):
+    '''
+    zwraca macierz warstwy górnej wygenerowanej losowo wartościami 2 i 3
+    :param size_x:
+    :param size_y:
+    :return:
+    '''
     return np.random.randint(2, high=4, size=[size_x, size_y])
 
 
 def create_bottom_layer_array(img_array, top_random_layer_array):
     '''
-    tworzy drugą macierz na podstawie macierzy obrazka i macierzy losowej, która przyjmuje wartości 2 lub 3
+    tworzy macierz dolnej warstwy na podstawie macierzy obrazka i macierzy warstwy górnej losowej, która przyjmuje wartości 2 lub 3
     :param img_array: macierz obrazka
     :param top_random_layer_array: losowa macierz
     :return: macierz zawierająca tylko wartości 2 i 3 wygenerowane na podstawie powyższych macierzy
